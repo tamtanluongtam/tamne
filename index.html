@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Xem video Vũng Tàu</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 30px; }
+    img { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>🎬 Nhấn vào hình bên dưới để xem video</h2>
+  <p style="color: red;">* Bạn sẽ được chuyển sang trang Shopee trước. Sau đó quay lại để xem video!</p>
+
+  <img id="thumb" src="https://raw.githubusercontent.com/tamtanluongtam/tamne/main/thumbnail.jpg" width="560">
+
+  <div id="video" style="margin-top: 30px;"></div>
+
+  <script>
+    const thumb = document.getElementById('thumb');
+    const videoDiv = document.getElementById('video');
+    const affiliate = 'https://s.shopee.vn/8AKxdfsjlk';
+
+    thumb.addEventListener('click', () => {
+      localStorage.setItem('clicked', 'yes');
+      window.location.href = affiliate;
+    });
+
+    window.onload = () => {
+      if (localStorage.getItem('clicked') === 'yes') {
+        videoDiv.innerHTML = `
+          <h3>📺 Video đang phát:</h3>
+          <iframe src="https://drive.google.com/file/d/1-UŨ95BFkKaS7iYrLXnzjTi0uv5tjDKmA/preview"
+            width="560" height="315" allowfullscreen></iframe>
+        `;
+        localStorage.removeItem('clicked');
+      }
+    };
+  </script>
+</body>
+</html>
